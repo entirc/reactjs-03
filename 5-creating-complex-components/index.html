@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Learning React</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://unpkg.com/react@15.3.1/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <style>
+            body, html {
+                font-family: 'verdana'
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>E.N.T.I - Aprendendo React - Hangout #3</h2>
+            <h3>Capítulo 5 - Criando Componentes Complexos</h3>
+            <h4>Cartão de Paleta de Cores</h4>
+        </div>
+        
+        <div id="app"></div>
+
+        <script type="text/babel">
+
+            class Card extends React.Component {
+                render() {
+                    const cardStyle = {
+                        height: 200,
+                        width: 150,
+                        boxShadow : "0 0 10px #666",
+                        margin: 10,
+                        float: 'left'
+                    }
+                    return (
+                        <div style={ cardStyle }>
+                            <Square color={ this.props.color }/>
+                            <Label color={ this.props.color }/>
+                        </div>
+                    )
+                }
+            }
+
+            class Square extends React.Component {
+                render() {
+                    const squareStyle = {
+                        backgroundColor: this.props.color,
+                        height : 150
+                    }
+                    return (
+                        <div style={ squareStyle }></div>
+                    )
+                }
+            }
+
+            class Label extends React.Component {
+                render() {
+                    const labelStyle = {
+                        fontFamily: "sans-serif",
+                        fontWeight: "bold",
+                        textAlign: 'center'
+                    }
+                    return (
+                        <p style={ labelStyle }>
+                            { this.props.color }
+                        </p>
+                    )
+                }
+            }
+
+            const colors = ['#FF6663', '#000000', 'green']
+            const cards = []
+
+            for(let i = 0; i < colors.length; i++ ) {
+                cards.push(<Card color={ colors[i] } />)
+            }
+
+            ReactDOM.render(
+                <div>
+                    { cards }
+                </div>,
+                document.querySelector('#app')
+            )
+
+        </script>
+
+    </body>
+</html>

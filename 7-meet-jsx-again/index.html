@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Learning React</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://unpkg.com/react@15.3.1/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <style>
+            body,
+            html {
+                font-family: 'verdana'
+            }
+            .btn {
+                border: none;
+                padding: 10px;
+                margin: 0.2rem;
+            }
+            .btn_danger {
+                background-color: red;
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <h2>E.N.T.I - Aprendendo React - Hangout #3</h2>
+            <h3>Capítulo 7 - Conhecendo o JSX - Novamente !</h3>
+        </div>
+
+        <div id="app"></div>
+
+        <script type="text/babel">
+
+            /*
+                * Retornar um Unico Nó Raiz
+                * Não podemos especificar CSS inline
+                * Comentários
+                * Capitalização Componentes
+                * Elementos HTML em minúsculo
+            */
+
+            function Link (props) {
+                return (
+                    <li>
+                        <a target="_blank" href={ props.link }>
+                            { props.children }
+                        </a>
+                    </li>
+                )
+            }
+
+            class Btn extends React.Component {
+                render() {
+                    const style = {
+                        padding : '1rem',
+                        color : 'black'
+                    }
+                    return (
+                        /*<!-- Isto não funciona! -->*/
+
+                        /* Isto funciona */
+
+                        /*
+                          Isto também
+                          funciona
+                        */
+                        
+                        <button style={style}>
+                            { this.props.children }
+                        </button>
+                    )
+                }
+            }
+
+            const Btn2 = React.createElement(
+                'button',
+                 {
+                    className: 'btn'
+                 },
+                 'My Button 2'
+            )
+
+            const Btn3 = <Btn>My Button 3</Btn>
+
+            ReactDOM.render(
+                <div>
+                    <Btn>My Button</Btn>
+                </div>,
+                document.querySelector('#app')
+            )
+
+        </script>
+
+        

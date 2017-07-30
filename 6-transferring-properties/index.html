@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Learning React</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://unpkg.com/react@15.3.1/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <style>
+            body,
+            html {
+                font-family: 'verdana'
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <h2>E.N.T.I - Aprendendo React - Hangout #3</h2>
+            <h3>Capítulo 6 - Transferindo Propriedades (props)</h3>
+        </div>
+
+        <div id="app"></div>
+
+        <script type="text/babel">
+
+            class Display extends React.Component {
+                render() { 
+                    return(
+                        <div>
+                            <p>{this.props.color}</p>
+                            <p>{this.props.num}</p>
+                            <p>{this.props.size}</p>
+                        </div>
+                    ) 
+                } 
+            } 
+            
+            class Label extends React.Component{
+                render() { 
+                    return (
+                        <Display
+                            { ...this.props }
+                        /> 
+                    ) 
+                } 
+            }
+            
+            class Shirt extends React.Component { 
+                render() { 
+                    return (
+                        <div>
+                            <Label
+                                { ...this.props }
+                            />
+                        </div>
+                    )
+                } 
+            }
+            
+            ReactDOM.render(
+                <div>
+                    <Shirt 
+                        color="steelblue" 
+                        num="3.14" 
+                        size="medium"
+                    />
+                </div>, 
+                document.querySelector("#app") 
+            )
+
+        </script>
+
+    </body>
+
+</html>
